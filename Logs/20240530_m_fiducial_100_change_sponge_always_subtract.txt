@@ -1,0 +1,35 @@
+Setting delta_T to a sum of reciprocal powers of 2 to avoid floating point errors:	0.0030517578125 from 0.003
+Setting delta_r to a sum of reciprocal powers of 2 to avoid floating point errors:	0.0909423828125 from 0.0909090909090909
+New r_max = 10.0032958984375 from 10
+
+original friction with output to profiles csv so that I can characterise how much the effect is of the sponge layer.
+
+Time start:	Thu May 30 17:20:09 2024
+
+Parameter values (given in code units, then in SI units)
+P_final                :	44.9688687          0.0015              
+Omega_final            :	0.139723001463446   4188.79020478639    
+R_LC_max               :	7.15701773885541    71570.1773885541    
+r_min, r_max           :	1                   10.0032958984375    
+n_r, delta_r           :	100                 0.0909423828125     
+n_t, delta_t           :	1001                0.00314159265358979 
+Timestep delta_T       :	0.0030517578125     1.01795683349045e-07
+CFL max timestep       :	0.00314159265358979 1.04792251097584e-07
+Length of simulation   :	1.5                 5.00346142797228e-05	steps: 500
+Est. CSV size (MB)     :	50.6057739257812
+ell_max                :	20
+n_max                  :	10
+Printing values at ( r[99], theta[5] ) = ( 10.0032958984375, 0.0172787595947439 ) = ( 10.0032958984375, 0.0055 pi ).
+dOmega_by_dT_index     :	0.00093148667642297	dOmega_by_dT:	0.310495558807657
+Ramp start             :	1	0.0030517578125
+Ramp stop              :	150	0.457763671875
+
+use_outer_sponge_layer:	1
+sigma_0, gamma, beta    :	0.99	6	4
+
+CSV file saved:	CSV/20240530_m_fiducial_100_change_sponge_always_subtract_4_profiles.csv
+CSV file saved:	CSV/20240530_m_fiducial_100_change_sponge_always_subtract_5_history.csv
+CSV _3_VSH_coeffs not saved.
+CSV file saved:	CSV/20240530_m_fiducial_100_change_sponge_always_subtract_7_BCs.csv
+Log file saved:	Logs/20240530_m_fiducial_100_change_sponge_always_subtract.txt
+T_index       T             |	B_r           B_t           B_p           |	E_r           E_t           E_p           |	% E pts chngd |	nans_tot      % done        Est. time left

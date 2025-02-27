@@ -1,0 +1,63 @@
+Setting delta_T to a sum of reciprocal powers of 2 to avoid floating point errors:	0.0030517578125 from 0.003
+Setting delta_r to a sum of reciprocal powers of 2 to avoid floating point errors:	0.1837158203125 from 0.183673469387755
+New r_max = 10.0020751953125 from 10
+
+Instead of the exact function for a dipole, use the magnetic field values at the current timestep when ramping the field. In this run, n_r=50, corresponding the half-radial resolution 20250122c.
+
+Time start:	Thu Jan 30 20:35:52 2025
+
+Parameter values (given in code units, then in SI units)
+P_final                      :	44.9688687          0.0015              
+Omega_final                  :	0.0922171809658739  2764.60153515902    
+R_LC_max                     :	10.8439662709931    108439.662709931    
+r_min, r_max                 :	1                   10.0020751953125    
+n_r, delta_r                 :	50                  0.1837158203125     
+n_t, delta_t                 :	1001                0.00314159265358979 
+Timestep delta_T             :	0.0030517578125     1.01795683349045e-07
+CFL max timestep             :	0.00314159265358979 1.04792251097584e-07
+Length of simulation         :	0.3                 1.00069228559446e-05	steps: 100
+Est. CSV size (MB)           :	2.39514827728271
+ell_max                      :	20
+dOmega_by_dT_index           :	0.00093148667642297	dOmega_by_dT:	0.310495558807657
+Ramp start                   :	1	0.0030517578125
+Ramp stop                    :	150	0.457763671875
+
+Twist start                :	100151	305.636596679688
+Twist stop                   :	100200	305.7861328125
+Twist magnitude              :	1e-08
+Twist min radius             :	1
+Twist ramp    99% radius     :	1.9
+Twist de-ramp 99% radius     :	9.1
+Twist max radius             :	10
+Twist min angle (rad)        :	0.523598775598299
+Twist ramp    99% angle (rad):	0.593411945678072
+Twist de-ramp 99% angle (rad):	0.628318530717959
+Twist max angle (rad)        :	0.698131700797732
+
+Printing values at ( r[25], theta[250] ) = ( 5.5928955078125, 0.786968959724243 ) = ( 5.5928955078125, 0.2505 pi ).
+
+use_outer_sponge_layer:	1
+sigma_0, gamma, beta    :	0.8	6	4
+CSV _1_profiles not saved.
+CSV file saved:	CSV/20250130_a_ramp_with_current_field_nr50d_5_history.csv
+CSV _3_VSH_coeffs not saved.
+CSV _4_BCs not saved.
+Log file saved:	Logs/20250130_a_ramp_with_current_field_nr50d.txt
+T_index       T             |	B_r           B_t           B_p           |	E_r           E_t           E_p           |	% E pts chngd |	nans_tot      % done        Est. time left
+0             0             |	0.00807089    0.00404814    0             |	0             0             0             |	nan           |	0             1             ramping at T_index = 1
+1             0.00305176    |	0.00807089    0.00404814    0             |	9.85779e-06   -1.96537e-05  -9.26707e-10  |	0             |	0             2             0:02:27
+ramping at T_index = 2
+2             0.00610352    |	0.00807089    0.00404814    -5.92549e-15  |	1.97156e-05   -3.93075e-05  -1.81461e-09  |	0             |	0             3             0:01:47
+ramping at T_index = 3
+3             0.00915527    |	0.00807089    0.00404814    -1.55518e-14  |	2.95734e-05   -5.89612e-05  -2.57716e-09  |	0             |	0             4             0:01:33
+ramping at T_index = 4
+4             0.012207      |	0.00807089    0.00404814    -2.82497e-14  |	3.94311e-05   -7.86149e-05  -3.18418e-09  |	0             |	0             5             0:01:32
+ramping at T_index = 5
+5             0.0152588     |	0.00807089    0.00404814    -4.35319e-14  |	4.92889e-05   -9.82687e-05  -3.58381e-09  |	0.7           |	0             6             0:01:29
+ramping at T_index = 6
+6             0.0183105     |	0.00807089    0.00404814    -6.05979e-14  |	5.91467e-05   -0.000117922  -3.7242e-09   |	0.9           |	0             7             0:01:26
+ramping at T_index = 7
+7             0.0213623     |	0.00807089    0.00404814    -7.85139e-14  |	6.90045e-05   -0.000137576  -3.5535e-09   |	1             |	0             8             0:01:24
+ramping at T_index = 8
+8             0.0244141     |	0.00807089    0.00404814    -9.61858e-14  |	7.88623e-05   -0.00015723   -3.01987e-09  |	1.1           |	0             9             0:01:25
+ramping at T_index = 9

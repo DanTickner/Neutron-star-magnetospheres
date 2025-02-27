@@ -1,0 +1,40 @@
+Setting delta_T to a sum of reciprocal powers of 2 to avoid floating point errors:	0.0030517578125 from 0.003
+Setting delta_r to a sum of reciprocal powers of 2 to avoid floating point errors:	0.0909423828125 from 0.0909090909090909
+New r_max = 10.0032958984375 from 10
+
+My expression for Cartesian vector components has just been updated. Also add an option to only calculate the outer boundary in void calculate_Cartesian_vector_components() because it is a slow function.
+
+Time start:	Fri Jun 07 16:36:22 2024
+
+Parameter values (given in code units, then in SI units)
+P_final                :	44.9688687          0.0015              
+Omega_final            :	0.139723001463446   4188.79020478639    
+R_LC_max               :	7.15701773885541    71570.1773885541    
+r_min, r_max           :	1                   10.0032958984375    
+n_r, delta_r           :	100                 0.0909423828125     
+n_t, delta_t           :	1001                0.00314159265358979 
+Timestep delta_T       :	0.0030517578125     1.01795683349045e-07
+CFL max timestep       :	0.00314159265358979 1.04792251097584e-07
+Length of simulation   :	1.5                 5.00346142797228e-05	steps: 500
+Est. CSV size (MB)     :	5.06057739257812
+ell_max                :	20
+n_max                  :	10
+Printing values at ( r[99], theta[250] ) = ( 10.0032958984375, 0.786968959724243 ) = ( 10.0032958984375, 0.2505 pi ).
+dOmega_by_dT_index     :	0.00093148667642297	dOmega_by_dT:	0.310495558807657
+Ramp start             :	1	0.0030517578125
+Ramp stop              :	150	0.457763671875
+
+use_outer_sponge_layer:	1
+sigma_0, gamma, beta    :	0.8	6	4
+
+CSV file saved:	CSV/20240607_d_use_my_Cartesians_for_outer_BCs_and_updated_Cartesian_expression_4_profiles.csv
+CSV file saved:	CSV/20240607_d_use_my_Cartesians_for_outer_BCs_and_updated_Cartesian_expression_5_history.csv
+CSV _3_VSH_coeffs not saved.
+CSV file saved:	CSV/20240607_d_use_my_Cartesians_for_outer_BCs_and_updated_Cartesian_expression_7_BCs.csv
+Log file saved:	Logs/20240607_d_use_my_Cartesians_for_outer_BCs_and_updated_Cartesian_expression.txt
+T_index       T             |	B_r           B_t           B_p           |	E_r           E_t           E_p           |	% E pts chngd |	nans_tot      % done        Est. time left
+0             0             |	0.0014106     0.000707517   0             |	0             0             0             |	nan           |	0             0.2           1             0.00305176    |	0.0014106     -0.00053091   -0.00200216   |	4.66899e-06   -0.00200216   0.00053091    |	0             |	0             0.4           2:56:45
+2             0.00610352    |	0.00141074    -0.0126764    0.00358845    |	-3.40923e-05  0.00358845    0.0126764     |	0             |	0             0.6           2:54:06
+3             0.00915527    |	0.00137535    0.0184169     0.0742749     |	1.69086e-05   0.0742749     -0.0184169    |	0             |	0             0.8           2:52:59
+4             0.012207      |	0.00140863    0.434688      -0.0957372    |	1.56903e-05   -0.0957372    -0.434688     |	0             |	0             1             2:52:44
+5             0.0152588     |	0.00307669    -0.495032     -2.54347      |	0.000197208   -2.54347      0.495032      |	0.5           |	0             1.2           2:51:53
