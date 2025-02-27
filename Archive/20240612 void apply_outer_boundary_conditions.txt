@@ -1,0 +1,136 @@
+Just keeping a record of the alternative expressions used. I think the original Petri method was fine after all. Not sure why there were issues.
+
+void apply_outer_boundary_conditions(){
+	// Petri 2012, \S3.3.
+	
+	//--- Reset arrays ---
+	B_outer_before_BCs = std::vector< std::vector<double> > ( 3, std::vector<double> ( n_t ) );
+	B_outer_after_BCs  = std::vector< std::vector<double> > ( 3, std::vector<double> ( n_t ) );
+	E_outer_before_BCs = std::vector< std::vector<double> > ( 3, std::vector<double> ( n_t ) );
+	E_outer_after_BCs  = std::vector< std::vector<double> > ( 3, std::vector<double> ( n_t ) );
+	
+	//--- Record values before outer BCs applied ---
+	for( int j=0; j<n_t; j++ ){
+		for( int f=0; f<3; f++ ){
+			B_outer_before_BCs[f][j] = B[f].back()[j];
+			E_outer_before_BCs[f][j] = E[f].back()[j];
+		}
+	}
+	
+	//--- Apply outer BCs ---
+	if( T_index < T_index_rotation_ramp_start ){
+		for( int j=0; j<n_t; j++ ){
+			B[1].back()[j] = B_t_function( r_max, t[j] );
+			B[2].back()[j] = B_p_function( r_max, t[j] );
+			E[1].back()[j] = 0;
+			E[2].back()[j] = 0;
+		}
+	}
+	else {
+		for( int j=0; j<n_t; j++ ){
+			
+			/*
+			double E_t_new = 0.5 * ( E[1].back()[j] + B[2].back()[j] );
+			double E_p_new = 0.5 * ( E[2].back()[j] - B[1].back()[j] );
+			E[1].back()[j] =   E_t_new;
+			B[2].back()[j] =   E_t_new;
+			E[2].back()[j] =   E_p_new;
+			B[1].back()[j] = - E_p_new;
+			*/
+			
+			/*
+			//--- Parfrey, PhD thesis, Section 3.9.2, using his stated Cartesian vector conversions ---
+			double B_t_new = 0.5 * ( B[1].back()[j]         - E[2].back()[j] * st[j] );
+			double B_p_new = 0.5 * ( E[1].back()[j] / st[j] + B[2].back()[j]         );
+			double E_t_new = 0.5 * ( E[1].back()[j]         + B[2].back()[j] * st[j] );
+			double E_p_new = 0.5 * ( E[2].back()[j]         - B[1].back()[j] / st[j] );
+			B[1].back()[j] = B_t_new;
+			B[2].back()[j] = B_p_new;
+			E[1].back()[j] = E_t_new;
+			E[2].back()[j] = E_p_new;
+			*/
+			
+			/*
+			//--- Parfrey, PhD thesis, Section 3.9.2, using my inbuilt Cartesian vector conversions ---
+			calculate_Cartesian_vector_components( true );
+			//calculate_Cartesian_vector_components();
+			
+			double B_y = B[2].back()[j];
+			double B_z = B[0].back()[j] * ct[j] - B[1].back()[j] * st[j];
+			double E_y = E[2].back()[j];
+			double E_z = E[0].back()[j] * ct[j] - E[1].back()[j] * st[j];
+			
+			double w1 = 0.5 * ( E_Cartesian[2].back()[j] + B_Cartesian[1].back()[j] );
+			double w2 = 0.5 * ( E_Cartesian[1].back()[j] - B_Cartesian[2].back()[j] );
+			double w3 = 0.5 * ( E_Cartesian[2].back()[j] - B_Cartesian[1].back()[j] );
+			double w4 = 0.5 * ( E_Cartesian[1].back()[j] + B_Cartesian[2].back()[j] );
+			
+			B[1].back()[j] = -w3;
+			B[2].back()[j] =  w4;
+			E[1].back()[j] =  w4;
+			E[2].back()[j] =  w3;
+			*/
+			
+			
+			//--- Parfrey v2 20240610 ---
+			/*
+			double B_y = B[2].back()[j];
+			double B_z = B[0].back()[j] * ct[j] - B[1].back()[j] * st[j];
+			double E_y = E[2].back()[j];
+			double E_z = E[0].back()[j] * ct[j] - E[1].back()[j] * st[j];
+			
+			double w_3 = 0.5 * ( E_z - B_y );
+			double w_4 = 0.5 * ( E_y + B_z );
+			
+			//B[1].back()[j] = -w_3 / r.back();
+			//B[2].back()[j] =  w_4 / ( r.back() * st[j] );
+			//E[1].back()[j] =  w_4 / r.back();
+			//E[2].back()[j] =  w_3 / ( r.back() * st[j] );
+			
+			B[1].back()[j] = -w_3;
+			B[2].back()[j] =  w_4;
+			E[1].back()[j] =  w_4;
+			E[2].back()[j] =  w_3;
+			*/
+			
+			
+			/*
+			//--- Parfrey v3 20240610 ---
+			double B_y = B[2].back()[j];
+			double B_z = B[0].back()[j] * ct[j] - B[1].back()[j] * st[j];
+			double E_y = E[2].back()[j];
+			double E_z = E[0].back()[j] * ct[j] - E[1].back()[j] * st[j];
+			
+			B[1].back()[j] = ( B_y - E_z ) / ( 2.0 * r.back()         );
+			B[2].back()[j] = ( E_y + B_z ) / ( 2.0 * r.back() * st[j] );
+			E[1].back()[j] = ( E_y + B_z ) / ( 2.0 * r.back()         );
+			E[2].back()[j] = ( E_z - B_y ) / ( 2.0 * r.back() * st[j] );
+			*/
+			
+			
+			//--- Petri rewrite ---
+			double B_t_PDE = B[1].back()[j];
+			double B_p_PDE = B[2].back()[j];
+			double E_t_PDE = E[1].back()[j];
+			double E_p_PDE = E[2].back()[j];
+			
+			B[1].back()[j] = 0.5 * ( B_t_PDE - E_p_PDE );
+			B[2].back()[j] = 0.5 * ( B_p_PDE + E_t_PDE );
+			E[1].back()[j] = 0.5 * ( E_t_PDE + B_p_PDE );
+			E[2].back()[j] = 0.5 * ( E_p_PDE - B_t_PDE );
+			
+			
+		}
+	}
+	
+	//--- Record values after outer BCs applied ---
+	for( int j=0; j<n_t; j++ ){
+		for( int f=0; f<3; f++ ){
+			B_outer_after_BCs[f][j] = B[f].back()[j];
+			E_outer_after_BCs[f][j] = E[f].back()[j];
+			B_outer_BCs_difference[f][j] = B_outer_after_BCs[f][j] - B_outer_before_BCs[f][j];
+			E_outer_BCs_difference[f][j] = E_outer_after_BCs[f][j] - E_outer_before_BCs[f][j];
+		}
+	}
+	
+}
