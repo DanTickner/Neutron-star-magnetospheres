@@ -269,7 +269,6 @@ if use_filled_contour:
 		cp = ax.contourf( grid_x, grid_z, grid_f )
 else:
 	if use_custom_contours:
-		print( "hiorhe" )
 		cp = ax.contour( grid_x, grid_z, grid_f, levels=custom_contours, colors=custom_colours[len(custom_contours)-2] )
 	else:
 		cp = ax.contour( grid_x, grid_z, grid_f )
