@@ -7,6 +7,12 @@ Start from an initial guess x_0 and increase accuracy up to a specified number o
 Application of the function to find the equilibrium neutron number density in a neutron star.
 This uses the equation as given in (7.1) of Ryan-Norton 2010, which implicitly requires a mass density.
 Once working, derive an equation for a mass fraction so that the mass density explicitly appears.
+
+An initial guess is required for n_n, the neutron number density. We choose
+n_n = rho / ( m_n + m_p + m_e )
+where rho is the mass density, and m_n etc are the rest mass of the neutron, proton and electron.
+This value is chosen so that n_n = n_p, i.e. the number densities of neutrons and protons are equal initially.
+There is no physical basis for this choice, but it seems a reasonable starting point.
 '''
 
 import numpy as np # np.sign(), np.pi
